@@ -33,9 +33,19 @@ export function useTheme() {
     return "light";
   }
 
+  function setInitialTheme() {
+    const theme = getTheme();
+    if (theme === "dark") {
+      setDark();
+    } else if (theme === "light") {
+      setLight();
+    }
+  }
+
   return {
     setDark,
     setLight,
     getTheme,
+    setInitialTheme,
   };
 }
