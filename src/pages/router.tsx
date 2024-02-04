@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { LoginPage } from "./login";
 import { PublishedPage } from "./published";
+import { Editor } from "@/features/editor";
 
 export const router = createBrowserRouter([
   {
@@ -10,5 +11,9 @@ export const router = createBrowserRouter([
   {
     path: "/published",
     element: <PublishedPage />,
+  },
+  {
+    path: "/edit",
+    element: <Editor />,
   },
 ]);
