@@ -1,14 +1,15 @@
 import { cn } from "@/libs/cn";
-import { ViewParent } from "./view-parent";
+import { ViewParent } from "./view";
 import {
   Dialog,
   DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogClose,
-} from "@/components/ui/dialog";
+} from "@/shared/ui/dialog";
 import { useEditStore } from "../services/store";
 import { v4 } from "uuid";
+import { ComponentPropsWithoutRef } from "react";
 
 export const AddNew = () => {
   return (
@@ -33,7 +34,7 @@ export const AddNew = () => {
   );
 };
 
-interface INewBrick extends React.HTMLAttributes<HTMLDivElement> {
+interface INewBrick extends ComponentPropsWithoutRef<"div"> {
   children: React.ReactNode;
 }
 

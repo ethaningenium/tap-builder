@@ -2,6 +2,7 @@ import { Editing } from "./editing";
 import { Header } from "./header";
 import { useEditStore } from "../services/store";
 import { useLayoutEffect } from "react";
+import { v4 } from "uuid";
 
 export const Editor = () => {
   const { setBricks } = useEditStore();
@@ -9,21 +10,21 @@ export const Editor = () => {
   useLayoutEffect(() => {
     setBricks([
       {
-        id: "1",
+        id: v4(),
         type: "title",
         payload: "Проблемы",
         params: "",
         children: [],
       },
       {
-        id: "2",
+        id: v4(),
         type: "title",
         payload: "Решения",
         params: "",
         children: [],
       },
       {
-        id: "3",
+        id: v4(),
         type: "text",
         payload: "Вопросы и задачи для решения проблемы",
         params: "",
@@ -32,7 +33,7 @@ export const Editor = () => {
     ]);
   }, []);
   return (
-    <div className="w-full min-h-dvh bg-neutral-800">
+    <div className="w-full min-h-dvh bg-neutral-900">
       <Header />
       <Editing />
     </div>

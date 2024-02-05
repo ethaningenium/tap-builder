@@ -1,7 +1,7 @@
 // import { useTheme } from "@/services/useTheme";
 
-import { Title, Text } from "@/components/bricks";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Title, Text } from "@/features/render";
+import { ThemeToggle } from "@/shared/theme-toggle";
 
 export const Published: React.FC = () => {
   // const { setDark, setLight } = useTheme();

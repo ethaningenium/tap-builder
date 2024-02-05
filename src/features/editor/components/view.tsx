@@ -10,7 +10,7 @@ export const ViewParent = forwardRef(
       <div
         ref={ref}
         className={cn(
-          "w-full p-8 border border-neutral-500 rounded-xl flex justify-center items-center bg-white dark:bg-neutral-800 relative",
+          "w-full p-8 border border-neutral-700 rounded-xl flex justify-center items-center bg-white dark:bg-neutral-900 relative",
           props.className
         )}
       >

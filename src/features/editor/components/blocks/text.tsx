@@ -1,15 +1,15 @@
-import { Text } from "@/components/bricks";
-import { BricksProps } from "../../services/bricks-props-type";
-import { ViewParent } from "../view-parent";
+import { Text } from "@/features/render";
+import { Brick } from "@/types/Brick";
+import { ViewParent } from "../view";
 
-import { EditDialog } from "../edit-dialog";
-import { DialogClose, DialogFooter } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { EditDialog } from "../dialog";
+import { DialogClose, DialogFooter } from "@/shared/ui/dialog";
+import { Button } from "@/shared/ui/button";
+import { Input } from "@/shared/ui/input";
 import { useEditStore } from "../../services/store";
 import { useState } from "react";
 
-export const TextEditor = (props: BricksProps) => {
+export const TextEditor = (props: Brick) => {
   const { changeBrick, deleteBrick } = useEditStore();
   const [value, setValue] = useState(props.payload);
 
