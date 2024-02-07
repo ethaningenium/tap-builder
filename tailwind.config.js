@@ -11,6 +11,9 @@ export default {
           white: '#FFF',
           danger: 'rgb(239 68 68)',
         },
+        text: {
+          backColor: 'rgb(156 163 175)',
+        }
       },
     },
   },
