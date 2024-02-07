@@ -44,9 +44,7 @@ export const Register: React.FC = () => {
   };
 
   const isPasswordFocused = () => {
-    // Implement a function to check if the password input is currently focused
-    // You can use the state or refs to track the focus status
-    // Example: Replace this with your actual implementation
+
     return true; 
   };
 
