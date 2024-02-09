@@ -7,7 +7,7 @@ export const Header = () => {
       <div className="flex w-full justify-between items-center px-4 container py-3">
         <Link
           className="flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition"
-          to="/"
+          to="/dashboard"
         >
           <ArrowLeft />
           <span className="hidden sm:flex">Dashboard</span>
