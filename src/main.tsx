@@ -4,12 +4,16 @@ import "./index.css";
 import { router } from "./pages/router";
 import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "./layouts/theme-provider";
+import { QueryClient, QueryClientProvider } from "react-query";
+export const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

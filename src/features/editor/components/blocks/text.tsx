@@ -1,6 +1,6 @@
 import { Text } from "@/features/render";
 import { Brick } from "@/types/Brick";
-import { ViewParent } from "../view";
+import { Wrapper } from "../wrapper";
 
 import { EditDialog } from "../dialog";
 import { DialogClose, DialogFooter } from "@/shared/ui/dialog";
@@ -30,7 +30,7 @@ export const TextEditor = (props: Brick) => {
     deleteBrick(props.id);
   };
   return (
-    <ViewParent>
+    <Wrapper>
       <Text text={props.payload} />
       <EditDialog>
         <Input value={value} onChange={handleChange} />
@@ -54,6 +54,6 @@ export const TextEditor = (props: Brick) => {
           </div>
         </DialogFooter>
       </EditDialog>
-    </ViewParent>
+    </Wrapper>
   );
 };

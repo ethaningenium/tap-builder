@@ -1,5 +1,5 @@
 import { cn } from "@/libs/cn";
-import { ViewParent } from "./view";
+import { Wrapper } from "./wrapper";
 import {
   Dialog,
   DialogTrigger,
@@ -15,9 +15,9 @@ export const AddNew = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <ViewParent className="border-none bg-neutral-800 dark:bg-white text-white dark:text-neutral-800">
+        <Wrapper className="border-none bg-neutral-800 dark:bg-white text-white dark:text-neutral-800">
           <p className="text-xl font-bold">Add new</p>
-        </ViewParent>
+        </Wrapper>
       </DialogTrigger>
       <DialogContent className="w-full flex flex-col items-center">
         <DialogHeader>

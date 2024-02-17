@@ -10,12 +10,14 @@ interface EditStore {
   changeBrick: (brick: Brick) => void;
   deleteBrick: (id: string) => void;
   addBrick: (brick: Brick) => void;
+  setPage: (page: Page) => void;
 }
 
 export const useEditStore = create<EditStore>()(
   devtools((set) => ({
     bricks: [],
     page: {
+      id: "",
       title: "",
       address: "",
     },
@@ -35,5 +37,6 @@ export const useEditStore = create<EditStore>()(
         bricks: [...state.bricks, brick],
       }));
     },
+    setPage: (page: Page) => set({ page }),
   }))
 );

@@ -9,6 +9,7 @@ export const usePage = () => {
   useEffect(() => {
     setIsUpdated(true);
   }, [bricks, page]);
+
   function onSave(cb: (page: PageWithBricks) => void) {
     cb({ ...page, bricks });
     setIsUpdated(false);

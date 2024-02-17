@@ -1,6 +1,6 @@
 import { Title } from "@/features/render/components/bricks";
 import { Brick } from "@/types/Brick";
-import { ViewParent } from "../view";
+import { Wrapper } from "../wrapper";
 import { EditDialog } from "../dialog";
 import { DialogClose, DialogFooter } from "@/shared/ui/dialog";
 import { Button } from "@/shared/ui/button";
@@ -29,7 +29,7 @@ export const TitleEditor = (props: Brick) => {
     deleteBrick(props.id);
   };
   return (
-    <ViewParent>
+    <Wrapper>
       <Title title={props.payload} />
       <EditDialog>
         <Input value={value} onChange={handleChange} />
@@ -53,6 +53,6 @@ export const TitleEditor = (props: Brick) => {
           </div>
         </DialogFooter>
       </EditDialog>
-    </ViewParent>
+    </Wrapper>
   );
 };

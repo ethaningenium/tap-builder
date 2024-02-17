@@ -1,19 +1,37 @@
 import { createBrowserRouter } from "react-router-dom";
-import { LoginPage } from "./login";
-import { PublishedPage } from "./published";
+import { GoogleCallback, Login, Register } from "@/features/auth";
+import { Published } from "@/features/published";
 import { Editor } from "@/features/editor";
+import { DashBoard } from "@/features/dashboard";
+import { Auth } from "@/features/auth";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginPage />,
+    element: (
+      <Auth>
+        <DashBoard />
+      </Auth>
+    ),
   },
   {
-    path: "/published",
-    element: <PublishedPage />,
+    path: "/login",
+    element: <Login />,
   },
   {
-    path: "/edit",
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/published/:id",
+    element: <Published />,
+  },
+  {
+    path: "/edit/:id",
     element: <Editor />,
+  },
+  {
+    path: "/google/calback",
+    element: <GoogleCallback />,
   },
 ]);

@@ -1,7 +1,7 @@
 import { cn } from "@/libs/cn";
 import React, { forwardRef, Ref } from "react";
 
-export const ViewParent = forwardRef(
+export const Wrapper = forwardRef(
   (
     props: { children: React.ReactNode; className?: string },
     ref: Ref<HTMLDivElement>

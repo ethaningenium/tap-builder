@@ -2,13 +2,33 @@ import { Eye } from "lucide-react";
 import { ThemeToggle } from "@/shared/theme-toggle";
 import { useEditStore } from "../services/store";
 import { Render } from "@/features/render";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/libs/cn";
 import { List } from "./list";
+import { GetPage } from "../services/fetching";
+import { useParams } from "react-router-dom";
 
 export const Editing = () => {
   const [isPreview, setIsPreview] = useState(false);
-  const { bricks } = useEditStore();
+  const { bricks, setBricks, setPage } = useEditStore();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      GetPage(id).then((res) => {
+        if (res.status === 200) {
+          if (res.data) {
+            setBricks(res.data.bricks);
+            setPage({
+              id: res.data.id,
+              title: res.data.title,
+              address: res.data.address,
+            });
+          }
+        }
+      });
+    }
+  }, []);
 
   function togglePreview() {
     setIsPreview(!isPreview);
