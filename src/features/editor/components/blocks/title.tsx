@@ -29,8 +29,8 @@ export const TitleEditor = (props: Brick) => {
     deleteBrick(props.id);
   };
   return (
-    <Wrapper>
-      <Title title={props.payload} />
+    <Wrapper id={props.id}>
+      <Title payload={props.payload} />
       <EditDialog>
         <Input value={value} onChange={handleChange} />
         <DialogFooter className="w-full flex flex-row justify-between gap-2 sm:justify-between">

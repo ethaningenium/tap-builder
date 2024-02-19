@@ -1,2 +1,2 @@
-export { Text, Title } from "./components/bricks";
+export { Text, Title, Air } from "./components/bricks";
 export { Render } from "./components/render";

@@ -3,15 +3,11 @@ import { Link } from "react-router-dom";
 import { usePage } from "../services/usePage";
 import { cn } from "@/libs/cn";
 import { UpdatePage } from "../services/fetching";
-import { useEffect } from "react";
 import { useEditStore } from "../services/store";
 
 export const Header = () => {
   const { onSave, isUpdated } = usePage();
   const { page } = useEditStore();
-  useEffect(() => {
-    console.log(isUpdated);
-  }, [isUpdated]);
   function handleSave() {
     onSave((data) => {
       const token = localStorage.getItem("Authorization");
@@ -22,7 +18,7 @@ export const Header = () => {
     });
   }
   return (
-    <header className="w-full fixed border-b border-neutral-700 flex justify-center text-neutral-100">
+    <header className="w-full fixed border-b border-neutral-700 flex justify-center text-neutral-100 z-50 bg-neutral-900">
       <div className="flex w-full justify-between items-center px-4 container py-3">
         <Link
           className="flex items-center gap-2 text-neutral-400 hover:text-neutral-100 transition"

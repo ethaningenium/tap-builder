@@ -1,4 +1,4 @@
-import { Text } from "@/features/render";
+import { Air } from "@/features/render";
 import { Brick } from "@/types/Brick";
 import { Wrapper } from "../wrapper";
 
@@ -9,12 +9,15 @@ import { Input } from "@/shared/ui/input";
 import { useEditStore } from "../../services/store";
 import { useState } from "react";
 
-export const TextEditor = (props: Brick) => {
+export const AirEditor = (props: Brick) => {
   const { changeBrick, deleteBrick } = useEditStore();
   const [value, setValue] = useState(props.payload);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    const value = Number(event.target.value);
+    if (!isNaN(value)) {
+      setValue(event.target.value);
+    }
   };
 
   const handleSave = () => {
@@ -31,7 +34,7 @@ export const TextEditor = (props: Brick) => {
   };
   return (
     <Wrapper id={props.id}>
-      <Text payload={props.payload} />
+      <Air payload={props.payload} />
       <EditDialog>
         <Input value={value} onChange={handleChange} />
         <DialogFooter className="w-full flex flex-row justify-between gap-2 sm:gap-3">

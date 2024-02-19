@@ -15,7 +15,7 @@ export function PageCard(props: PageCardProps) {
         <Link
           target="_blank"
           className="flex items-center gap-4 px-6 py-3 rounded-xl hover:bg-neutral-700 transition"
-          to={"/" + props.page.address}
+          to={"/page/" + props.page.address}
         >
           <p className="text-xs font-light text-neutral-400">
             /{props.page.address}

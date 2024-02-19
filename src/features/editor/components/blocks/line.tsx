@@ -1,29 +1,29 @@
-import { Text } from "@/features/render";
 import { Brick } from "@/types/Brick";
 import { Wrapper } from "../wrapper";
 
 import { EditDialog } from "../dialog";
 import { DialogClose, DialogFooter } from "@/shared/ui/dialog";
 import { Button } from "@/shared/ui/button";
-import { Input } from "@/shared/ui/input";
+
 import { useEditStore } from "../../services/store";
 import { useState } from "react";
+import { Line } from "@/features/render/components/bricks";
 
-export const TextEditor = (props: Brick) => {
+export const LineEditor = (props: Brick) => {
   const { changeBrick, deleteBrick } = useEditStore();
-  const [value, setValue] = useState(props.payload);
+  const [isDashed, setDashed] = useState(props.payload === "dashed");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    setDashed(event.target.checked);
   };
 
   const handleSave = () => {
     const { payload, ...newBrick } = props;
-    changeBrick({ ...newBrick, payload: value });
+    changeBrick({ ...newBrick, payload: isDashed ? "dashed" : "solid" });
   };
 
   const handleClose = () => {
-    setValue(props.payload);
+    setDashed(props.payload === "dashed");
   };
 
   const handleDelete = () => {
@@ -31,9 +31,18 @@ export const TextEditor = (props: Brick) => {
   };
   return (
     <Wrapper id={props.id}>
-      <Text payload={props.payload} />
+      <Line payload={props.payload} />
       <EditDialog>
-        <Input value={value} onChange={handleChange} />
+        <div className="w-full flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="isdashed"
+            className="accent-emerald-500"
+            onChange={handleChange}
+            checked={isDashed}
+          />
+          <label htmlFor="isdashed">Is dashed</label>
+        </div>
         <DialogFooter className="w-full flex flex-row justify-between gap-2 sm:gap-3">
           <DialogClose asChild>
             <Button type="button" variant="destructive" onClick={handleDelete}>

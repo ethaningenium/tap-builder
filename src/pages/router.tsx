@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: "/published/:id",
+    path: "/page/:id",
     element: <Published />,
   },
   {

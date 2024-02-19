@@ -15,18 +15,23 @@ export const AddNew = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Wrapper className="border-none bg-neutral-800 dark:bg-white text-white dark:text-neutral-800">
+        <div className="w-full p-8 border border-neutral-700 rounded-xl flex justify-center items-center relative border-none bg-neutral-800 dark:bg-white text-white dark:text-neutral-800">
           <p className="text-xl font-bold">Add new</p>
-        </Wrapper>
+        </div>
       </DialogTrigger>
-      <DialogContent className="w-full flex flex-col items-center">
+      <DialogContent
+        className="w-full flex flex-col items-center"
+        onFocus={(e) => e.target.blur()}
+      >
         <DialogHeader>
           <span>Click to element to add</span>
         </DialogHeader>
         <div className="w-full rounded-2xl p-2">
-          <DialogClose className="flex gap-4">
+          <DialogClose className="flex gap-4 flex-wrap justify-center">
             <TitleAdd />
             <TextAdd />
+            <AirAdd />
+            <LineAdd />
           </DialogClose>
         </div>
       </DialogContent>
@@ -93,6 +98,52 @@ function TitleAdd() {
       </h2>
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Title
+      </p>
+    </NewBrickParent>
+  );
+}
+
+function AirAdd() {
+  const { addBrick } = useEditStore();
+  function AddAir() {
+    addBrick({
+      id: v4(),
+      type: "air",
+      payload: "20",
+      params: "",
+      children: [],
+    });
+  }
+  return (
+    <NewBrickParent onClick={AddAir}>
+      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
+        20 px
+      </h2>
+      <p className="text-sm font-light  text-neutral-800 dark:text-white">
+        Air
+      </p>
+    </NewBrickParent>
+  );
+}
+
+function LineAdd() {
+  const { addBrick } = useEditStore();
+  function AddAir() {
+    addBrick({
+      id: v4(),
+      type: "line",
+      payload: "solid",
+      params: "",
+      children: [],
+    });
+  }
+  return (
+    <NewBrickParent onClick={AddAir}>
+      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
+        ------
+      </h2>
+      <p className="text-sm font-light  text-neutral-800 dark:text-white">
+        Line
       </p>
     </NewBrickParent>
   );

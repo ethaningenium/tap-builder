@@ -78,3 +78,20 @@
 html, body {
   @apply bg-neutral-900
 }
+
+.DragHandle {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  
+  cursor: var(--cursor, pointer);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
