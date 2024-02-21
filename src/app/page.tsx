@@ -1,5 +1,10 @@
-import { LandingHeader } from "@/widgets/landing-header";
+import { Header, Hero } from "@/widgets/landing";
 
-export default function Home() {
-  return <LandingHeader />;
+export default function page() {
+  return (
+    <>
+      <Header />
+      <Hero />
+    </>
+  );
 }
