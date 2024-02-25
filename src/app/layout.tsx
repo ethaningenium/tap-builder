@@ -3,6 +3,8 @@ import { Roboto_Flex } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/features/theme/provider";
 
+import { ReactQueryProvider } from "@/features/reat-query";
+
 const rf = Roboto_Flex({
   weight: ["1000", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
@@ -35,7 +37,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}{" "}
+          <ReactQueryProvider>{children}</ReactQueryProvider>
         </ThemeProvider>
       </body>
     </html>
