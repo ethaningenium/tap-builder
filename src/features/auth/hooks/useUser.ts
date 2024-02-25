@@ -3,6 +3,7 @@
 import React from "react";
 import { useUserStore } from "../store/useUserStore";
 import { me } from "@/api/auth";
+import { GetToken } from "@/shared/lib/token";
 
 export function useUser() {
   const { user, setUser } = useUserStore();
@@ -10,7 +11,7 @@ export function useUser() {
 
   React.useEffect(() => {
     if (user.email !== "" && user.name !== "") return;
-    const token = localStorage.getItem("Authorization");
+    const token = GetToken();
     if (!token) return;
     me(token).then((data) => {
       setUser({

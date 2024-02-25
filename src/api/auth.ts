@@ -34,7 +34,6 @@ export async function register(name: string, email: string, password: string) {
 }
 
 export async function me(token: string) {
-  console.log(baseUrl);
   const res = await fetch(`${baseUrl}/me`, {
     method: "GET",
     headers: {

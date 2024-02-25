@@ -14,9 +14,12 @@ export function Header() {
           <Link href="#">Pricing</Link>
           <Link href="#">About us</Link>
         </nav>
-        <button className="px-8 py-3 rounded-3xl hover:opacity-90 transition duration-200 bg-gradient-to-r from-emerald-400 border border-emerald-400 to-emerald-600 font-semibold">
+        <Link
+          href="/dashboard"
+          className="px-8 py-3 rounded-3xl hover:opacity-90 transition duration-200 bg-gradient-to-r from-emerald-400 border border-emerald-400 to-emerald-600 font-semibold"
+        >
           Open an account
-        </button>
+        </Link>
       </div>
     </header>
   );

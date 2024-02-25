@@ -15,6 +15,17 @@ export function SetToken(token: string) {
   }
 }
 
+export function GetToken() {
+  if (typeof document !== "undefined") {
+    const cookie = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Authorization="));
+    if (cookie) {
+      return cookie.split("=")[1];
+    }
+  }
+}
+
 export function SetTokenComp(props: { token: string }) {
   const router = useRouter();
   useLayoutEffect(() => {

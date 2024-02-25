@@ -1,2 +1,2 @@
-export { Hero } from "./ui/hero";
 export { Header } from "./ui/header";
+export { Edit } from "./ui/edit";

@@ -5,7 +5,7 @@ import { login } from "@/api/auth";
 import { useMutation } from "react-query";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { SetToken } from "@/shared/lib/set-token";
+import { SetToken } from "@/shared/lib/token";
 
 export function Login() {
   const router = useRouter();

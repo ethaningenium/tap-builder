@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto_Flex } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/features/theme/provider";
 
-import { ReactQueryProvider } from "@/features/reat-query";
+import { ReactQueryProvider } from "@/features/react-query";
 
 const rf = Roboto_Flex({
   weight: ["1000", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -29,16 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={rf.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ReactQueryProvider>{children}</ReactQueryProvider>
-        </ThemeProvider>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );

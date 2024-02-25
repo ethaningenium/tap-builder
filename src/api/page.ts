@@ -1,5 +1,5 @@
 import { baseUrl } from ".";
-import { Page } from "@/entities/pages";
+import { Page, PageMeta } from "@/entities/pages";
 
 export async function getAll(token: string) {
   const res = await fetch(`${baseUrl}/page`, {
@@ -8,6 +8,7 @@ export async function getAll(token: string) {
       "Content-Type": "application/json",
       Authorization: token,
     },
+    cache: "no-store",
   });
   const data: Page[] = await res.json();
   return data;
@@ -19,7 +20,9 @@ export async function getOne(id: string) {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
+
   const data: Page = await res.json();
   return data;
 }
@@ -31,6 +34,7 @@ export async function create(token: string, page: Page) {
       "Content-Type": "application/json",
       Authorization: token,
     },
+    cache: "no-store",
     body: JSON.stringify(page),
   });
   const data: Page = await res.json();
@@ -40,6 +44,20 @@ export async function create(token: string, page: Page) {
 export async function update(token: string, page: Page) {
   const res = await fetch(`${baseUrl}/page`, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    cache: "no-store",
+    body: JSON.stringify(page),
+  });
+  const data: Page = await res.json();
+  return data;
+}
+
+export async function updateMeta(token: string, page: PageMeta) {
+  const res = await fetch(`${baseUrl}/page`, {
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,

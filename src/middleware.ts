@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const tokenRequiredRoutes = ["/dashboard", "/edit"];
-const authRoutes = ["/login", "/register"];
+const authRoutes = ["/login", "/register", "/google/calback"];
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("Authorization")?.value;
@@ -22,6 +22,10 @@ export function middleware(request: NextRequest) {
   if (token) {
     headers.set("Authorization", token);
     request.headers.set("Authorization", token);
+    request.headers.set(
+      "Cache-Control",
+      `no-store, no-cache, must-revalidate, private`
+    );
   }
 
   return NextResponse.next({

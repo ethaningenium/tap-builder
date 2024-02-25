@@ -3,7 +3,7 @@
 import { useRegister, useUser, Loader } from "@/features/auth";
 import { useMutation } from "react-query";
 import { register } from "@/api/auth";
-import { SetToken } from "@/shared/lib/set-token";
+import { SetToken } from "@/shared/lib/token";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 

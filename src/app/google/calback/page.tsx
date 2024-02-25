@@ -1,4 +1,4 @@
-import { SetTokenComp } from "@/shared/lib/set-token";
+import { SetTokenComp } from "@/shared/lib/token";
 import { redirect } from "next/navigation";
 
 export default function Page({
