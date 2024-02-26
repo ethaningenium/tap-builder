@@ -17,7 +17,7 @@ import {
 
 export const TitleEditor = (props: Brick) => {
   const { handleChangeBrick, handleDeleteBrick } = useCurrent();
-  const [payload, setPayload] = useState(props.payload);
+  const [title, setTitle] = useState(props.payload);
   const [size, setSize] = useState("");
   const [align, setAlign] = useState("");
 
@@ -30,11 +30,11 @@ export const TitleEditor = (props: Brick) => {
   const handleSave = () => {
     const { payload, params, ...newBrick } = props;
     const newParams = JSON.stringify({ size, align });
-    handleChangeBrick({ ...newBrick, payload: payload, params: newParams });
+    handleChangeBrick({ ...newBrick, payload: title, params: newParams });
   };
 
   const handleClose = () => {
-    setPayload(props.payload);
+    setTitle(props.payload);
   };
 
   const handleDelete = () => {
@@ -44,7 +44,7 @@ export const TitleEditor = (props: Brick) => {
     <Wrapper id={props.id}>
       <Title {...props} />
       <EditDialog title="Edit Title">
-        <EditTitle value={payload} handleChange={setPayload} />
+        <EditTitle value={title} handleChange={setTitle} />
         <EditSize value={size} handleChange={setSize} />
         <EditAlign value={align} handleChange={setAlign} />
         <DialogFooter className="w-full flex flex-row justify-between gap-2 sm:justify-between">
