@@ -3,8 +3,15 @@ import { useCurrentPage } from "../store/current-editing";
 import { useSave } from "./useSave";
 
 export function useCurrent() {
-  const { bricks, setPage, setBricks, changeBrick, deleteBrick, addBrick } =
-    useCurrentPage();
+  const {
+    page,
+    bricks,
+    setPage,
+    setBricks,
+    changeBrick,
+    deleteBrick,
+    addBrick,
+  } = useCurrentPage();
   const { BricksUpdated } = useSave();
   function setInitialPage(page: Page) {
     setPage(page);
@@ -30,6 +37,7 @@ export function useCurrent() {
     BricksUpdated();
   }
   return {
+    page,
     bricks,
     setInitialPage,
     setDragBricks,

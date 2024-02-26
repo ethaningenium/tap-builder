@@ -32,6 +32,7 @@ export const AddNewBrick = () => {
             <TextAdd />
             <AirAdd />
             <LineAdd />
+            <PictureAdd />
           </DialogClose>
         </div>
       </DialogContent>
@@ -144,6 +145,29 @@ function LineAdd() {
       </h2>
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Line
+      </p>
+    </NewBrickParent>
+  );
+}
+
+function PictureAdd() {
+  const { handleAddBrick } = useCurrent();
+  function AddPicture() {
+    handleAddBrick({
+      id: v4(),
+      type: "picture",
+      payload: "",
+      params: "",
+      children: [],
+    });
+  }
+  return (
+    <NewBrickParent onClick={AddPicture}>
+      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
+        IMG
+      </h2>
+      <p className="text-sm font-light  text-neutral-800 dark:text-white">
+        Picture
       </p>
     </NewBrickParent>
   );

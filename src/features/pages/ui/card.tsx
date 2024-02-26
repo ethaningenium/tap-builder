@@ -26,6 +26,7 @@ export function Card(props: Page) {
         <Edit {...props} />
         <Link
           href={"/edit/" + props.address}
+          prefetch={false}
           scroll={false}
           className="px-8 text-nowrap flex justify-center items-center h-full bg-transparent hover:bg-gradient-to-r hover:from-emerald-500 hover:to-emerald-700 rounded shadow shadow-neutral-800 hover:shadow-2xl hover:shadow-emerald-400 text-white border border-neutral-700 hover:border-emarald-400 duration-300 "
         >

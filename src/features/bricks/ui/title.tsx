@@ -1,23 +1,23 @@
 import { Brick } from "@/entities/pages";
 import { cn } from "@/shared/lib/utils";
 
-type Params = {
+export type TitleParams = {
   size: string;
   align: string;
 };
 
-function ParseParams(params: string) {
+export function ParseTitleParams(params: string) {
   try {
-    const parsedParams: Params = JSON.parse(params);
+    const parsedParams: TitleParams = JSON.parse(params);
     return parsedParams;
   } catch (error) {
-    const parsedParams: Params = { size: "1", align: "left" };
+    const parsedParams: TitleParams = { size: "medium", align: "left" };
     return parsedParams;
   }
 }
 
 export const Title = (props: Brick) => {
-  const params = ParseParams(props.params);
+  const params = ParseTitleParams(props.params);
   return (
     <h1
       className={cn(
@@ -26,6 +26,9 @@ export const Title = (props: Brick) => {
           "text-left": params.align === "left",
           "text-center": params.align === "center",
           "text-right": params.align === "right",
+          "text-3xl": params.size === "large",
+          "text-2xl": params.size === "medium",
+          "text-xl": params.size === "small",
         }
       )}
     >

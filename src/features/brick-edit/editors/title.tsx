@@ -1,4 +1,4 @@
-import { Title } from "@/features/bricks";
+import { Title, TitleParams, ParseTitleParams } from "@/features/bricks";
 import { Brick } from "@/entities/pages";
 import { Wrapper } from "../ui/wrapper";
 import { EditDialog } from "../ui/dialog";
@@ -6,23 +6,35 @@ import { DialogClose, DialogFooter } from "@/shared/ui/dialog";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { useCurrent } from "../hooks/useCurrent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/ui/select";
 
 export const TitleEditor = (props: Brick) => {
   const { handleChangeBrick, handleDeleteBrick } = useCurrent();
-  const [value, setValue] = useState(props.payload);
+  const [payload, setPayload] = useState(props.payload);
+  const [size, setSize] = useState("");
+  const [align, setAlign] = useState("");
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
+  useEffect(() => {
+    const params = ParseTitleParams(props.params);
+    setSize(params.size);
+    setAlign(params.align);
+  }, []);
 
   const handleSave = () => {
-    const { payload, ...newBrick } = props;
-    handleChangeBrick({ ...newBrick, payload: value });
+    const { payload, params, ...newBrick } = props;
+    const newParams = JSON.stringify({ size, align });
+    handleChangeBrick({ ...newBrick, payload: payload, params: newParams });
   };
 
   const handleClose = () => {
-    setValue(props.payload);
+    setPayload(props.payload);
   };
 
   const handleDelete = () => {
@@ -31,8 +43,10 @@ export const TitleEditor = (props: Brick) => {
   return (
     <Wrapper id={props.id}>
       <Title {...props} />
-      <EditDialog>
-        <Input value={value} onChange={handleChange} />
+      <EditDialog title="Edit Title">
+        <EditTitle value={payload} handleChange={setPayload} />
+        <EditSize value={size} handleChange={setSize} />
+        <EditAlign value={align} handleChange={setAlign} />
         <DialogFooter className="w-full flex flex-row justify-between gap-2 sm:justify-between">
           <DialogClose asChild>
             <Button type="button" variant="destructive" onClick={handleDelete}>
@@ -56,3 +70,74 @@ export const TitleEditor = (props: Brick) => {
     </Wrapper>
   );
 };
+
+function EditTitle({
+  value,
+  handleChange,
+}: {
+  value: string;
+  handleChange: (value: string) => void;
+}) {
+  return (
+    <div className="w-full flex flex-col gap-2">
+      <label className="text-neutral-400">Title</label>
+      <Input value={value} onChange={(e) => handleChange(e.target.value)} />
+    </div>
+  );
+}
+
+function EditSize({
+  value,
+  handleChange,
+}: {
+  value: string;
+  handleChange: (value: string) => void;
+}) {
+  return (
+    <div className="w-full flex flex-col gap-2">
+      <label className="text-neutral-400">Size</label>
+      <Select
+        value={value}
+        onValueChange={(e) => handleChange(e)}
+        defaultValue="small"
+      >
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select a size" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="small">Small</SelectItem>
+          <SelectItem value="medium">Medium</SelectItem>
+          <SelectItem value="large">Large</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}
+
+function EditAlign({
+  value,
+  handleChange,
+}: {
+  value: string;
+  handleChange: (value: string) => void;
+}) {
+  return (
+    <div className="w-full flex flex-col gap-2">
+      <label className="text-neutral-400">Align</label>
+      <Select
+        value={value}
+        onValueChange={(e) => handleChange(e)}
+        defaultValue="left"
+      >
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select a alignment" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="left">Left</SelectItem>
+          <SelectItem value="middle">Middle</SelectItem>
+          <SelectItem value="right">Right</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}

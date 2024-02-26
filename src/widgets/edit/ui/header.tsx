@@ -1,10 +1,11 @@
 "use client";
 
-import { Preview, Save } from "@/features/brick-edit";
+import { Preview, Save, useCurrent } from "@/features/brick-edit";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-export const Header = (props: { title: string }) => {
+export const Header = () => {
+  const { page } = useCurrent();
   return (
     <header className="w-full fixed border-b border-neutral-700 flex justify-center text-neutral-100 z-50 bg-neutral-900">
       <div className="flex w-full justify-between items-center px-4 container py-3">
@@ -15,7 +16,7 @@ export const Header = (props: { title: string }) => {
           <ArrowLeft />
           <span className="hidden sm:flex">Dashboard</span>
         </Link>
-        <h1>{props.title || "Editor"}</h1>
+        <h1>{page.title || "Editor"}</h1>
         <div className="flex items-center gap-4">
           <Save />
           <Preview />
