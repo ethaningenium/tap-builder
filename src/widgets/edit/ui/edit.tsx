@@ -2,21 +2,29 @@
 
 import { Render } from "@/features/render";
 import { Page } from "@/entities/pages";
+import { useQuery } from "react-query";
 import { useCurrent, usePreview } from "@/features/brick-edit";
 import { useEffect } from "react";
 import { CurrentBricks } from "./current-bricks";
+import { getOne } from "@/api/page";
 
-export const Edit = (props: { page: Page }) => {
+export const Edit = (props: { id: string }) => {
+  const { data, isLoading } = useQuery(["page", props.id], () => {
+    return getOne(props.id);
+  });
   const { bricks, setInitialPage } = useCurrent();
   const { isPreview } = usePreview();
 
   useEffect(() => {
-    setInitialPage(props.page);
-  }, [props.page]);
+    if (data) {
+      setInitialPage(data);
+    }
+  }, [data]);
 
   return (
     <main className="pt-24 min-h-dvh w-full flex flex-col items-center justify-start">
       <div className="w-full mx-4 max-w-96 rounded-lg  flex flex-col justify-start gap-6">
+        {isLoading && <div>Loading...</div>}
         {isPreview ? (
           <Render
             bricks={bricks}

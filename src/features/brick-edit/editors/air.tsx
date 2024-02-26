@@ -34,7 +34,7 @@ export const AirEditor = (props: Brick) => {
   return (
     <Wrapper id={props.id}>
       <Air {...props} />
-      <EditDialog>
+      <EditDialog title="Edit Air">
         <Input value={value} onChange={handleChange} />
         <DialogFooter className="w-full flex flex-row justify-between gap-2 sm:justify-between">
           <DialogClose asChild>

@@ -8,7 +8,10 @@ import {
 } from "@/shared/ui/dialog";
 import { Pencil } from "lucide-react";
 
-export const EditDialog = (props: { children: React.ReactNode }) => {
+export const EditDialog = (props: {
+  children: React.ReactNode;
+  title: string;
+}) => {
   return (
     <Dialog>
       <DialogTrigger className="p-2 border border-neutral-800 hover:border-neutral-600 transition rounded-lg absolute top-2 right-2">
@@ -16,7 +19,7 @@ export const EditDialog = (props: { children: React.ReactNode }) => {
       </DialogTrigger>
       <DialogContent className="flex flex-col items-start">
         <DialogHeader>
-          <DialogTitle>Edit</DialogTitle>
+          <DialogTitle>{props.title}</DialogTitle>
         </DialogHeader>
         {props.children}
       </DialogContent>

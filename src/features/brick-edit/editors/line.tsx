@@ -30,7 +30,7 @@ export const LineEditor = (props: Brick) => {
   return (
     <Wrapper id={props.id}>
       <Line {...props} />
-      <EditDialog>
+      <EditDialog title="Edit Line">
         <div className="w-full flex items-center gap-2">
           <input
             type="checkbox"
