@@ -29,7 +29,7 @@ export const Wrapper = (
       ref={setNodeRef}
       style={style}
       className={cn(
-        "w-full p-8 border select-none border-neutral-700 rounded-xl flex justify-center items-center bg-white dark:bg-neutral-900 relative",
+        "w-full px-8 py-4 border select-none border-neutral-700 rounded-xl flex justify-center items-center bg-white dark:bg-neutral-900 relative",
         props.className
       )}
       {...props}

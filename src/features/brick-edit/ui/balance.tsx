@@ -4,6 +4,7 @@ import { Brick } from "@/entities/pages";
 import { AirEditor } from "../editors/air";
 import { LineEditor } from "../editors/line";
 import { PictureEditor } from "../editors/picture";
+import { ClickEditor } from "../editors/click";
 
 export const Balance = (props: Brick) => {
   switch (props.type) {
@@ -17,6 +18,8 @@ export const Balance = (props: Brick) => {
       return <LineEditor {...props} />;
     case "picture":
       return <PictureEditor {...props} />;
+    case "click":
+      return <ClickEditor {...props} />;
     default:
       return null;
   }

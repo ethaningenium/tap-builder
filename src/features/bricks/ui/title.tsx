@@ -11,7 +11,7 @@ export function ParseTitleParams(params: string) {
     const parsedParams: TitleParams = JSON.parse(params);
     return parsedParams;
   } catch (error) {
-    const parsedParams: TitleParams = { size: "medium", align: "left" };
+    const parsedParams: TitleParams = { size: "medium", align: "center" };
     return parsedParams;
   }
 }

@@ -14,7 +14,7 @@ export const EditDialog = (props: {
 }) => {
   return (
     <Dialog>
-      <DialogTrigger className="p-2 border border-neutral-800 hover:border-neutral-600 transition rounded-lg absolute top-2 right-2">
+      <DialogTrigger className="p-2 border border-neutral-800 bg-neutral-900 hover:border-neutral-600 transition rounded-lg absolute top-1/2 -translate-y-1/2 right-2">
         <Pencil size={20} strokeWidth={1} />
       </DialogTrigger>
       <DialogContent className="flex flex-col items-start">

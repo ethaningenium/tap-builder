@@ -33,6 +33,7 @@ export const AddNewBrick = () => {
             <AirAdd />
             <LineAdd />
             <PictureAdd />
+            <ClickAdd />
           </DialogClose>
         </div>
       </DialogContent>
@@ -64,8 +65,8 @@ function TextAdd() {
     handleAddBrick({
       id: v4(),
       type: "text",
-      payload: "New Text, my text",
-      params: "",
+      payload: "New Text, example text",
+      params: '{"size": "medium", "align": "center"}',
       children: [],
     });
   }
@@ -87,8 +88,8 @@ function TitleAdd() {
     handleAddBrick({
       id: v4(),
       type: "title",
-      payload: "New Title",
-      params: "",
+      payload: "Example title",
+      params: '{"size": "medium", "align": "center"}',
       children: [],
     });
   }
@@ -168,6 +169,29 @@ function PictureAdd() {
       </h2>
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Picture
+      </p>
+    </NewBrickParent>
+  );
+}
+
+function ClickAdd() {
+  const { handleAddBrick } = useCurrent();
+  function AddPicture() {
+    handleAddBrick({
+      id: v4(),
+      type: "click",
+      payload: "Example link",
+      params: "#",
+      children: [],
+    });
+  }
+  return (
+    <NewBrickParent onClick={AddPicture}>
+      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
+        WWW
+      </h2>
+      <p className="text-sm font-light  text-neutral-800 dark:text-white">
+        Link
       </p>
     </NewBrickParent>
   );

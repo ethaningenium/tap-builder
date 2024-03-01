@@ -1,5 +1,5 @@
 import { Brick } from "@/entities/pages";
-import { Air, Text, Title, Line, Picture } from "@/features/bricks";
+import { Air, Text, Title, Line, Picture, Click } from "@/features/bricks";
 
 export const Balance = (props: Brick) => {
   switch (props.type) {
@@ -13,6 +13,8 @@ export const Balance = (props: Brick) => {
       return <Line {...props} />;
     case "picture":
       return <Picture {...props} />;
+    case "click":
+      return <Click {...props} />;
     default:
       throw new Error("Invalid type");
   }

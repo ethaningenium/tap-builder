@@ -7,7 +7,7 @@ import { Button } from "@/shared/ui/button";
 import { useCurrent } from "../hooks/useCurrent";
 import { useEffect, useState } from "react";
 import { Upload } from "@/features/upload";
-import { Delete } from "lucide-react";
+import { Trash } from "lucide-react";
 
 export const PictureEditor = (props: Brick) => {
   const { handleChangeBrick, handleDeleteBrick } = useCurrent();
@@ -83,9 +83,9 @@ function DeletePicture(props: {
     <div className="relative">
       <div
         onClick={() => props.handleChange("")}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-neutral-700 hover:bg-neutral-900"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl p-2 bg-neutral-700 hover:bg-neutral-900"
       >
-        <Delete className="text-white" />
+        <Trash className="text-white" />
       </div>
       {props.children}
     </div>

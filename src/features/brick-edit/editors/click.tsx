@@ -1,4 +1,4 @@
-import { ParseTextParams, Text } from "@/features/bricks";
+import { Click, ParseClickParams } from "@/features/bricks";
 import { Brick } from "@/entities/pages";
 import { Wrapper } from "../ui/wrapper";
 import { EditDialog } from "../ui/dialog";
@@ -7,37 +7,27 @@ import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { useCurrent } from "../hooks/useCurrent";
 import { useEffect, useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/shared/ui/select";
 
-export const TextEditor = (props: Brick) => {
+export const ClickEditor = (props: Brick) => {
   const { handleChangeBrick, handleDeleteBrick } = useCurrent();
   const [text, setText] = useState(props.payload);
-  const [size, setSize] = useState("");
-  const [align, setAlign] = useState("");
+  const [url, setUrl] = useState("");
 
   useEffect(() => {
-    const params = ParseTextParams(props.params);
-    setSize(params.size);
-    setAlign(params.align);
+    const params = ParseClickParams(props.params);
+    setUrl(params.url);
   }, []);
 
   const handleSave = () => {
     const { payload, params, ...newBrick } = props;
-    const newParams = JSON.stringify({ size, align });
+    const newParams = JSON.stringify({ url: url });
     handleChangeBrick({ ...newBrick, payload: text, params: newParams });
   };
 
   const handleClose = () => {
+    const params = ParseClickParams(props.params);
     setText(props.payload);
-    const params = ParseTextParams(props.params);
-    setSize(params.size);
-    setAlign(params.align);
+    setUrl(params.url);
   };
 
   const handleDelete = () => {
@@ -45,11 +35,10 @@ export const TextEditor = (props: Brick) => {
   };
   return (
     <Wrapper id={props.id}>
-      <Text {...props} />
-      <EditDialog title="Edit Text">
+      <Click {...props} />
+      <EditDialog title="Edit Title">
         <EditText value={text} handleChange={setText} />
-        <EditSize value={size} handleChange={setSize} />
-        <EditAlign value={align} handleChange={setAlign} />
+        <EditUrl value={url} handleChange={setUrl} />
         <DialogFooter className="w-full flex flex-row justify-between gap-2 sm:justify-between">
           <DialogClose asChild>
             <Button type="button" variant="destructive" onClick={handleDelete}>
@@ -89,7 +78,7 @@ function EditText({
   );
 }
 
-function EditSize({
+function EditUrl({
   value,
   handleChange,
 }: {
@@ -98,49 +87,8 @@ function EditSize({
 }) {
   return (
     <div className="w-full flex flex-col gap-2">
-      <label className="text-neutral-400">Size</label>
-      <Select
-        value={value}
-        onValueChange={(e) => handleChange(e)}
-        defaultValue="small"
-      >
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select a size" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="small">Small</SelectItem>
-          <SelectItem value="medium">Medium</SelectItem>
-          <SelectItem value="large">Large</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
-  );
-}
-
-function EditAlign({
-  value,
-  handleChange,
-}: {
-  value: string;
-  handleChange: (value: string) => void;
-}) {
-  return (
-    <div className="w-full flex flex-col gap-2">
-      <label className="text-neutral-400">Align</label>
-      <Select
-        value={value}
-        onValueChange={(e) => handleChange(e)}
-        defaultValue="left"
-      >
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select a alignment" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="left">Left</SelectItem>
-          <SelectItem value="middle">Middle</SelectItem>
-          <SelectItem value="right">Right</SelectItem>
-        </SelectContent>
-      </Select>
+      <label className="text-neutral-400">URL address</label>
+      <Input value={value} onChange={(e) => handleChange(e.target.value)} />
     </div>
   );
 }
