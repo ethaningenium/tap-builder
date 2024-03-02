@@ -42,7 +42,7 @@ export function CurrentBricks() {
     })
   );
   return (
-    <div className=" w-full flex flex-col gap-2  bg-white dark:bg-neutral-900">
+    <div className="w-full flex flex-col gap-2  bg-white dark:bg-neutral-900">
       <DndContext
         sensors={sensors}
         collisionDetection={closestCorners}

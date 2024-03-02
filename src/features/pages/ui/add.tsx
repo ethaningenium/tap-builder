@@ -56,7 +56,7 @@ export function Add() {
   }
   return (
     <PageDialog page={page} onSave={onSave}>
-      <div className="flex-1 min-w-72 min-h-56 h-full rounded-lg border border-neutral-700 flex justify-center items-center hover:bg-neutral-800 transition cursor-pointer">
+      <div className="flex-1 min-w-72 min-h-52 h-full rounded-lg border border-neutral-700 flex justify-center items-center hover:bg-neutral-800 transition cursor-pointer">
         <h1 className="bg-gradient-to-r from-emerald-500 to-emerald-700 bg-clip-text text-transparent font-medium text-3xl">
           Add new page
         </h1>

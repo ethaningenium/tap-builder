@@ -33,7 +33,7 @@ export function Edit(props: Page) {
   }
   return (
     <PageDialog page={{ ...page, bricks: [] }} onSave={handleEdit}>
-      <button className="p-2 rounded text-white hover:bg-neutral-700 flex gap-4 items-center">
+      <button className="p-2 rounded text-white hover:bg-neutral-700 flex gap-4 items-center absolute top-2 right-2">
         <EditIcon size={20} />
       </button>
     </PageDialog>

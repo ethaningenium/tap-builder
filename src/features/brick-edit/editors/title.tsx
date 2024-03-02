@@ -127,14 +127,14 @@ function EditAlign({
       <Select
         value={value}
         onValueChange={(e) => handleChange(e)}
-        defaultValue="left"
+        defaultValue="center"
       >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a alignment" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="left">Left</SelectItem>
-          <SelectItem value="middle">Middle</SelectItem>
+          <SelectItem value="center">Center</SelectItem>
           <SelectItem value="right">Right</SelectItem>
         </SelectContent>
       </Select>

@@ -4,7 +4,6 @@ import { Wrapper } from "../ui/wrapper";
 import { EditDialog } from "../ui/dialog";
 import { DialogClose, DialogFooter } from "@/shared/ui/dialog";
 import { Button } from "@/shared/ui/button";
-import { Input } from "@/shared/ui/input";
 import { useCurrent } from "../hooks/useCurrent";
 import { useEffect, useState } from "react";
 import {
@@ -14,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select";
+import { Textarea } from "@/shared/ui/textarea";
 
 export const TextEditor = (props: Brick) => {
   const { handleChangeBrick, handleDeleteBrick } = useCurrent();
@@ -84,7 +84,7 @@ function EditText({
   return (
     <div className="w-full flex flex-col gap-2">
       <label className="text-neutral-400">Text</label>
-      <Input value={value} onChange={(e) => handleChange(e.target.value)} />
+      <Textarea value={value} onChange={(e) => handleChange(e.target.value)} />
     </div>
   );
 }
@@ -130,14 +130,14 @@ function EditAlign({
       <Select
         value={value}
         onValueChange={(e) => handleChange(e)}
-        defaultValue="left"
+        defaultValue="center"
       >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a alignment" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="left">Left</SelectItem>
-          <SelectItem value="middle">Middle</SelectItem>
+          <SelectItem value="center">Center</SelectItem>
           <SelectItem value="right">Right</SelectItem>
         </SelectContent>
       </Select>

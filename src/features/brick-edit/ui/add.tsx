@@ -10,6 +10,14 @@ import {
 import { useCurrent } from "../hooks/useCurrent";
 import { v4 } from "uuid";
 import { ComponentPropsWithoutRef } from "react";
+import {
+  AlignVerticalSpaceAround,
+  Minus,
+  Image,
+  Link,
+  Type,
+  CaseSensitive,
+} from "lucide-react";
 
 export const AddNewBrick = () => {
   return (
@@ -72,9 +80,7 @@ function TextAdd() {
   }
   return (
     <NewBrickParent onClick={AddTitle}>
-      <h2 className="text-lg font-bold text-neutral-800 dark:text-white">
-        AaBbCc
-      </h2>
+      <CaseSensitive size={40} />
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Default text
       </p>
@@ -95,9 +101,7 @@ function TitleAdd() {
   }
   return (
     <NewBrickParent onClick={AddTitle}>
-      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
-        AaBb
-      </h2>
+      <Type size={40} />
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Title
       </p>
@@ -118,9 +122,7 @@ function AirAdd() {
   }
   return (
     <NewBrickParent onClick={AddAir}>
-      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
-        20 px
-      </h2>
+      <AlignVerticalSpaceAround size={40} />
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Air
       </p>
@@ -141,9 +143,7 @@ function LineAdd() {
   }
   return (
     <NewBrickParent onClick={AddAir}>
-      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
-        ------
-      </h2>
+      <Minus size={40} />
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Line
       </p>
@@ -164,9 +164,7 @@ function PictureAdd() {
   }
   return (
     <NewBrickParent onClick={AddPicture}>
-      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
-        IMG
-      </h2>
+      <Image size={40} />
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Picture
       </p>
@@ -187,9 +185,7 @@ function ClickAdd() {
   }
   return (
     <NewBrickParent onClick={AddPicture}>
-      <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">
-        WWW
-      </h2>
+      <Link size={40} />
       <p className="text-sm font-light  text-neutral-800 dark:text-white">
         Link
       </p>

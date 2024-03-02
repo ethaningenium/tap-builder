@@ -23,7 +23,7 @@ export const Edit = (props: { id: string }) => {
 
   return (
     <main className="pt-24 min-h-dvh w-full flex flex-col items-center justify-start">
-      <div className="w-full mx-4 max-w-96 rounded-lg  flex flex-col justify-start gap-6">
+      <div className="w-full mx-4 max-w-[500px] px-3 rounded-lg  flex flex-col justify-start gap-6">
         {isLoading && <div>Loading...</div>}
         {isPreview ? (
           <Render

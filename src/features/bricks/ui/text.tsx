@@ -22,7 +22,7 @@ export const Text = (props: Brick) => {
   return (
     <p
       className={cn(
-        "text-sm font-light text-neutral-700 dark:text-white w-full text-balance text-center",
+        "text-sm font-light text-neutral-700 dark:text-white w-full whitespace-pre-line text-center",
         {
           "text-left": params.align === "left",
           "text-center": params.align === "center",
