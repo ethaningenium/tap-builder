@@ -1,5 +1,28 @@
+import { z } from "zod";
 import { baseUrl } from ".";
-import { Page, PageMeta } from "@/entities/pages";
+import { Page, PageMeta, PageUser } from "@/entities/pages";
+
+const pageSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  address: z.string(),
+  theme: z.string(),
+  favicon: z.string(),
+  bricks: z.array(
+    z.object({
+      id: z.string(),
+      type: z.string(),
+      payload: z.string(),
+      params: z.string(),
+      children: z.array(z.string()),
+    })
+  ),
+  user: z.string(),
+});
+
+const pageMetaSchema = pageSchema.omit({ bricks: true });
+
+const pagesSchema = z.array(pageSchema);
 
 export async function getAll(token: string) {
   const res = await fetch(`${baseUrl}/page`, {
@@ -10,8 +33,9 @@ export async function getAll(token: string) {
     },
     cache: "no-store",
   });
-  const data: Page[] = await res.json();
-  return data;
+  const data: PageUser[] = await res.json();
+  const pages = data ? data : [];
+  return pagesSchema.parse(pages);
 }
 
 export async function getOne(id: string) {
@@ -23,8 +47,8 @@ export async function getOne(id: string) {
     cache: "no-store",
   });
 
-  const data: Page = await res.json();
-  return data;
+  const data = await res.json();
+  return pageSchema.parse(data);
 }
 
 export async function create(token: string, page: Page) {
@@ -37,8 +61,8 @@ export async function create(token: string, page: Page) {
     cache: "no-store",
     body: JSON.stringify(page),
   });
-  const data: Page = await res.json();
-  return data;
+  const data = await res.json();
+  return pageSchema.parse(data);
 }
 
 export async function update(token: string, page: Page) {
@@ -52,7 +76,7 @@ export async function update(token: string, page: Page) {
     body: JSON.stringify(page),
   });
   const data: Page = await res.json();
-  return data;
+  return pageSchema.parse(data);
 }
 
 export async function updateMeta(token: string, page: PageMeta) {
@@ -65,8 +89,12 @@ export async function updateMeta(token: string, page: PageMeta) {
     body: JSON.stringify(page),
   });
   const data: Page = await res.json();
-  return data;
+  return pageMetaSchema.parse(data);
 }
+
+const checkSchema = z.object({
+  exists: z.boolean(),
+});
 
 export async function check(id: string) {
   const res = await fetch(`${baseUrl}/address/${id}`, {
@@ -75,6 +103,6 @@ export async function check(id: string) {
       "Content-Type": "application/json",
     },
   });
-  const data: { exists: boolean } = await res.json();
-  return data;
+  const data = await res.json();
+  return checkSchema.parse(data);
 }

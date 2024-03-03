@@ -1,21 +1,6 @@
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/shared/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/shared/ui/select";
 
-import { Input } from "@/shared/ui/input";
+
+
 import { Page } from "@/entities/pages";
 import { useState } from "react";
 import { v4 } from "uuid";

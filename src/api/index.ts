@@ -1,1 +1,1 @@
-export const baseUrl = "https://tap-backend-awiw.onrender.com";
+export const baseUrl = process.env.NEXT_PUBLIC_API_URL;

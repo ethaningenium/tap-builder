@@ -8,7 +8,9 @@ import { useLayoutEffect } from "react";
 
 export function DashBoard(props: { pages: Page[] }) {
   const { setTheme } = useTheme();
+
   useLayoutEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_API_URL);
     setTheme("dark");
   }, []);
   return (
