@@ -6,27 +6,35 @@ import { DialogClose, DialogFooter } from "@/shared/ui/dialog";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { useCurrent } from "../hooks/useCurrent";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
+import { Slider } from "@/shared/ui/slider";
 
 export const AirEditor = (props: Brick) => {
   const { handleChangeBrick, handleDeleteBrick } = useCurrent();
-  const [value, setValue] = useState(props.payload);
+  const [value, setValue] = useState(0);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(event.target.value);
-    if (!isNaN(value)) {
-      setValue(event.target.value);
+  useLayoutEffect(() => {
+    const notNan = Number(props.payload);
+    if (!isNaN(notNan)) {
+      setValue(notNan);
     }
-  };
+  }, [props.payload]);
 
   const handleSave = () => {
     const { payload, ...newBrick } = props;
-    handleChangeBrick({ ...newBrick, payload: value });
+    handleChangeBrick({ ...newBrick, payload: String(value) });
   };
 
   const handleClose = () => {
-    setValue(props.payload);
+    const notNan = Number(props.payload);
+    if (!isNaN(notNan)) {
+      setValue(notNan);
+    }
   };
+
+  function Edithandle() {
+    console.log(value);
+  }
 
   const handleDelete = () => {
     handleDeleteBrick(props.id);
@@ -35,7 +43,24 @@ export const AirEditor = (props: Brick) => {
     <Wrapper id={props.id}>
       <Air {...props} />
       <EditDialog title="Edit Air">
-        <Input value={value} onChange={handleChange} />
+        <span>{value} px</span>
+        <button
+          onClick={() => {
+            setValue((prev) => prev + 10);
+            console.log("click: ", value);
+            Edithandle();
+          }}
+        >
+          Edit
+        </button>
+        <Slider
+          defaultValue={[20]}
+          max={200}
+          min={0}
+          step={10}
+          onValueChange={(value) => setValue(value[0])}
+          value={[value]}
+        />
         <DialogFooter className="w-full flex flex-row justify-between gap-2 sm:justify-between">
           <DialogClose asChild>
             <Button type="button" variant="destructive" onClick={handleDelete}>

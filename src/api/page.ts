@@ -106,3 +106,18 @@ export async function check(id: string) {
   const data = await res.json();
   return checkSchema.parse(data);
 }
+
+export async function remove(token: string, address: string) {
+  const res = await fetch(`${baseUrl}/page/${address}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  });
+  const data = await res.json();
+  const success = z.object({
+    message: z.enum(["deleted"]),
+  });
+  return success.parse(data);
+}

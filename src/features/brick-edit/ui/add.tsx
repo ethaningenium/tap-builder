@@ -34,14 +34,34 @@ export const AddNewBrick = () => {
         <DialogHeader>
           <span>Click to element to add</span>
         </DialogHeader>
-        <div className="w-full rounded-2xl p-2">
-          <DialogClose className="flex gap-4 flex-wrap justify-center">
-            <TitleAdd />
-            <TextAdd />
-            <AirAdd />
-            <LineAdd />
-            <PictureAdd />
-            <ClickAdd />
+        <div className="w-full rounded-2xl p-2 flex flex-col items-center">
+          <DialogClose className="flex gap-8 flex-wrap justify-center">
+            <div className="flex flex-col gap-2 items-center p-2">
+              <h3>Texts</h3>
+              <div className="flex flex-wrap gap-2">
+                <TitleAdd />
+                <TextAdd />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 items-center p-2">
+              <h3>Layouts</h3>
+              <div className="flex flex-wrap gap-2">
+                <AirAdd />
+                <LineAdd />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 items-center p-2">
+              <h3>Images</h3>
+              <div className="flex flex-wrap gap-2">
+                <PictureAdd />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 items-center p-2">
+              <h3>Links</h3>
+              <div className="flex flex-wrap gap-2">
+                <ClickAdd />
+              </div>
+            </div>
           </DialogClose>
         </div>
       </DialogContent>

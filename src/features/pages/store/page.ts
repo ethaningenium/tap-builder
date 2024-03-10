@@ -1,11 +1,12 @@
 import { create } from "zustand";
-import { Page } from "@/entities/pages";
+import { PageMeta } from "@/entities/pages";
 
 type PageStore = {
-  pages: Page[];
-  setPage: (pages: Page[]) => void;
-  addPage: (page: Page) => void;
-  updatePage: (page: Page) => void;
+  pages: PageMeta[];
+  setPage: (pages: PageMeta[]) => void;
+  addPage: (page: PageMeta) => void;
+  updatePage: (page: PageMeta) => void;
+  removePage: (address: string) => void;
 };
 
 export const usePageStore = create<PageStore>((set) => ({
@@ -18,6 +19,11 @@ export const usePageStore = create<PageStore>((set) => ({
         if (p.id === page.id) return page;
         return p;
       });
+      return { pages: newPages };
+    }),
+  removePage: (address) =>
+    set((state) => {
+      const newPages = state.pages.filter((p) => p.address !== address);
       return { pages: newPages };
     }),
 }));

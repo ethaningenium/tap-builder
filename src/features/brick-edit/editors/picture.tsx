@@ -8,6 +8,7 @@ import { useCurrent } from "../hooks/useCurrent";
 import { useEffect, useState } from "react";
 import { Upload } from "@/features/upload";
 import { Trash } from "lucide-react";
+import Image from "next/image";
 
 export const PictureEditor = (props: Brick) => {
   const { handleChangeBrick, handleDeleteBrick } = useCurrent();
@@ -30,9 +31,7 @@ export const PictureEditor = (props: Brick) => {
       <Picture {...props} />
       <EditDialog title="Edit Picture">
         {url ? (
-          <DeletePicture handleChange={setUrl}>
-            <Picture {...props} maxHight={500} url={url} />
-          </DeletePicture>
+          <DeletePicture handleChange={setUrl} url={url} />
         ) : (
           <UploadPicture value={url} handleChange={setUrl} />
         )}
@@ -76,18 +75,24 @@ function UploadPicture({
 }
 
 function DeletePicture(props: {
-  children: React.ReactNode;
   handleChange: (value: string) => void;
+  url: string;
 }) {
   return (
-    <div className="relative">
+    <div className="flex w-full justify-between p-4 bg-neutral-800 items-center rounded-xl">
+      <Image
+        src={props.url}
+        alt="Picture"
+        width={200}
+        height={200}
+        className="rounded-xl w-28 h-28 object-cover object-center"
+      />
       <div
         onClick={() => props.handleChange("")}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl p-2 bg-neutral-700 hover:bg-neutral-900"
+        className="rounded-xl p-2 bg-neutral-700 hover:bg-neutral-900"
       >
         <Trash className="text-white" />
       </div>
-      {props.children}
     </div>
   );
 }
